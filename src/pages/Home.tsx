@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Smartphone, Laptop, Star, Shield, Truck } from 'lucide-react';
+import { ArrowRight, Smartphone, Laptop, Star, Shield, Truck, Percent, Gift, Clock } from 'lucide-react';
 import ProductCard from '@/components/ProductCard';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -65,8 +64,95 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Categories */}
+      {/* Special Offers Section */}
       <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Special Offers</h2>
+            <p className="text-gray-600">Don't miss out on these amazing deals!</p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            <Card className="relative overflow-hidden group hover:shadow-lg transition-all duration-300">
+              <CardContent className="p-0">
+                <div className="relative">
+                  <img
+                    src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=500&h=300&fit=crop"
+                    alt="iPhone Sale"
+                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                    30% OFF
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2 flex items-center gap-2">
+                    <Percent className="h-5 w-5 text-red-500" />
+                    iPhone Flash Sale
+                  </h3>
+                  <p className="text-gray-600 mb-4">Get up to 30% off on latest iPhone models. Limited time offer!</p>
+                  <Button variant="outline" className="w-full">
+                    Shop iPhones
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="relative overflow-hidden group hover:shadow-lg transition-all duration-300">
+              <CardContent className="p-0">
+                <div className="relative">
+                  <img
+                    src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=500&h=300&fit=crop"
+                    alt="Laptop Deals"
+                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                    FREE GIFT
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2 flex items-center gap-2">
+                    <Gift className="h-5 w-5 text-green-500" />
+                    Laptop Bundle
+                  </h3>
+                  <p className="text-gray-600 mb-4">Buy any laptop and get a free wireless mouse and laptop bag!</p>
+                  <Button variant="outline" className="w-full">
+                    Shop Laptops
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="relative overflow-hidden group hover:shadow-lg transition-all duration-300">
+              <CardContent className="p-0">
+                <div className="relative">
+                  <img
+                    src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=500&h=300&fit=crop"
+                    alt="Limited Time Offer"
+                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute top-4 left-4 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                    24H ONLY
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2 flex items-center gap-2">
+                    <Clock className="h-5 w-5 text-orange-500" />
+                    Daily Deals
+                  </h3>
+                  <p className="text-gray-600 mb-4">New deals every day! Check back daily for exclusive offers.</p>
+                  <Button variant="outline" className="w-full">
+                    View Deals
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Categories */}
+      <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Shop by Category</h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -106,7 +192,7 @@ const Home = () => {
       </section>
 
       {/* Featured Products */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Featured Products</h2>
@@ -145,7 +231,7 @@ const Home = () => {
       </section>
 
       {/* Features */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
