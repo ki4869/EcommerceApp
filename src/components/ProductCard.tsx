@@ -7,6 +7,7 @@ import { useCart } from '@/contexts/CartContext';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { useToast } from '@/hooks/use-toast';
 
 interface ProductCardProps {
   product: Product;
@@ -14,10 +15,16 @@ interface ProductCardProps {
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const { addToCart } = useCart();
+  const { toast } = useToast();
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
+    e.stopPropagation();
     addToCart(product);
+    toast({
+      title: "Added to cart",
+      description: `${product.name} has been added to your cart.`,
+    });
   };
 
   return (

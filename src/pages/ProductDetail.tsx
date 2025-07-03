@@ -6,12 +6,14 @@ import { useCart } from '@/contexts/CartContext';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
+import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { Product } from '@/types';
 
 const ProductDetail = () => {
   const { id } = useParams();
   const { addToCart } = useCart();
+  const { toast } = useToast();
   const [quantity, setQuantity] = useState(1);
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
@@ -66,6 +68,10 @@ const ProductDetail = () => {
   const handleAddToCart = () => {
     if (product) {
       addToCart(product, quantity);
+      toast({
+        title: "Added to cart",
+        description: `${quantity} x ${product.name} has been added to your cart.`,
+      });
     }
   };
 
