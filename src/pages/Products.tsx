@@ -1,17 +1,24 @@
 
 import React, { useState } from 'react';
-import { products } from '@/data/products';
 import ProductCard from '@/components/ProductCard';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
+import { useProducts } from '@/hooks/useProducts';
 
 const Products = () => {
+  const { products, loading, error } = useProducts();
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState<string>('name');
+
+  React.useEffect(() => {
+    if (products.length > 0) {
+      filterProducts(selectedCategory, selectedBrands, sortBy);
+    }
+  }, [products, selectedCategory, selectedBrands, sortBy]);
 
   const categories = [
     { value: 'all', label: 'All Products' },
@@ -23,7 +30,6 @@ const Products = () => {
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
-    filterProducts(category, selectedBrands, sortBy);
   };
 
   const handleBrandChange = (brand: string, checked: boolean) => {
@@ -31,16 +37,14 @@ const Products = () => {
       ? [...selectedBrands, brand]
       : selectedBrands.filter(b => b !== brand);
     setSelectedBrands(newBrands);
-    filterProducts(selectedCategory, newBrands, sortBy);
   };
 
   const handleSortChange = (sort: string) => {
     setSortBy(sort);
-    filterProducts(selectedCategory, selectedBrands, sort);
   };
 
   const filterProducts = (category: string, brands: string[], sort: string) => {
-    let filtered = products;
+    let filtered = [...products];
 
     // Filter by category
     if (category !== 'all') {
@@ -74,8 +78,18 @@ const Products = () => {
     setSelectedCategory('all');
     setSelectedBrands([]);
     setSortBy('name');
-    setFilteredProducts(products);
   };
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-red-600 mb-4">Error Loading Products</h2>
+          <p className="text-gray-600">{error}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -151,13 +165,25 @@ const Products = () => {
               </Select>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
+            {loading ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[...Array(6)].map((_, i) => (
+                  <div key={i} className="bg-white rounded-lg p-4 animate-pulse">
+                    <div className="h-64 bg-gray-200 rounded mb-4"></div>
+                    <div className="h-4 bg-gray-200 rounded mb-2"></div>
+                    <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredProducts.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            )}
 
-            {filteredProducts.length === 0 && (
+            {!loading && filteredProducts.length === 0 && (
               <div className="text-center py-12">
                 <p className="text-gray-500 text-lg">No products found matching your criteria.</p>
                 <Button onClick={clearFilters} className="mt-4">
