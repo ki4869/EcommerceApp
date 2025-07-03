@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Smartphone, Laptop, Star, Shield, Truck, Percent, Gift, Clock } from 'lucide-react';
@@ -22,17 +23,17 @@ const Home = () => {
             loop
             playsInline
             preload="auto"
-            className="w-full h-full object-cover opacity-30"
+            className="w-full h-full object-cover opacity-40"
             onLoadStart={() => console.log('Video loading started')}
             onCanPlay={() => console.log('Video can play')}
             onError={(e) => console.log('Video error:', e)}
           >
             <source
-              src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+              src="https://player.vimeo.com/external/316069205.hd.mp4?s=8e4b59e2a2a0eb3b61d3b9c5d2b7b0e3e3b4c4b5&profile_id=175"
               type="video/mp4"
             />
             <source
-              src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4"
+              src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
               type="video/mp4"
             />
           </video>
