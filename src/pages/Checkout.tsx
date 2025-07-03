@@ -1,24 +1,28 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CreditCard, Lock, User, MapPin } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
+import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
 const Checkout = () => {
   const { items, total, clearCart } = useCart();
+  const { user } = useAuth();
   const navigate = useNavigate();
+  const { toast } = useToast();
   const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     // Customer Info
     firstName: '',
     lastName: '',
-    email: '',
+    email: user?.email || '',
     phone: '',
     // Shipping Address
     address: '',
@@ -27,9 +31,9 @@ const Checkout = () => {
     zipCode: '',
     country: 'United States',
     // Payment Info
-    cardNumber: '',
-    expiryDate: '',
-    cvv: '',
+    cardNumber: '4242 4242 4242 4242',
+    expiryDate: '12/25',
+    cvv: '123',
     cardholderName: ''
   });
 
@@ -42,15 +46,72 @@ const Checkout = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!user) {
+      toast({
+        title: "Authentication Required",
+        description: "Please log in to complete your purchase.",
+        variant: "destructive",
+      });
+      navigate('/auth');
+      return;
+    }
+
     setLoading(true);
 
-    // Simulate order processing
-    setTimeout(() => {
-      const orderId = Math.random().toString(36).substr(2, 9).toUpperCase();
-      clearCart();
-      navigate(`/order-confirmation/${orderId}`);
-    }, 2000);
+    try {
+      // Create payment items from cart
+      const paymentItems = items.map(item => ({
+        name: item.product.name,
+        price: item.product.price,
+        quantity: item.quantity
+      }));
+
+      // Call our edge function to create payment session
+      const { data, error } = await supabase.functions.invoke('create-payment', {
+        body: { items: paymentItems }
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      // For testing, we'll simulate the redirect with a delay
+      toast({
+        title: "Processing Payment",
+        description: "Redirecting to payment processor...",
+      });
+
+      setTimeout(() => {
+        clearCart();
+        // Redirect to payment URL (in real implementation, this would be Stripe Checkout)
+        window.location.href = data.url;
+      }, 1500);
+
+    } catch (error) {
+      console.error('Payment error:', error);
+      toast({
+        title: "Payment Error",
+        description: "There was an error processing your payment. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
+
+  // Redirect if not logged in
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold mb-4">Please Log In</h1>
+          <p className="text-gray-600 mb-4">You need to be logged in to checkout.</p>
+          <Button onClick={() => navigate('/auth')}>Go to Login</Button>
+        </div>
+      </div>
+    );
+  }
 
   if (items.length === 0) {
     return (
@@ -193,10 +254,15 @@ const Checkout = () => {
               <CardHeader>
                 <CardTitle className="flex items-center">
                   <CreditCard className="h-5 w-5 mr-2" />
-                  Payment Information
+                  Payment Information (Test Mode)
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
+                <div className="bg-blue-50 p-3 rounded-lg mb-4">
+                  <p className="text-sm text-blue-800">
+                    <strong>Test Mode:</strong> Use the pre-filled test card details
+                  </p>
+                </div>
                 <div>
                   <Label htmlFor="cardholderName">Cardholder Name</Label>
                   <Input
@@ -305,11 +371,11 @@ const Checkout = () => {
                   disabled={loading}
                 >
                   <Lock className="h-4 w-4 mr-2" />
-                  {loading ? 'Processing...' : 'Complete Order'}
+                  {loading ? 'Processing...' : `Pay $${finalTotal.toFixed(2)} (Test)`}
                 </Button>
 
                 <p className="text-xs text-gray-600 text-center">
-                  Your payment information is secure and encrypted
+                  Test mode - No real payment will be processed
                 </p>
               </CardContent>
             </Card>
