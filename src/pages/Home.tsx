@@ -22,34 +22,42 @@ const Home = () => {
             muted
             loop
             playsInline
-            className="w-full h-full object-cover opacity-20"
+            preload="auto"
+            className="w-full h-full object-cover opacity-30"
+            onLoadStart={() => console.log('Video loading started')}
+            onCanPlay={() => console.log('Video can play')}
+            onError={(e) => console.log('Video error:', e)}
           >
             <source
-              src="https://assets.mixkit.co/videos/preview/mixkit-modern-technology-and-circuit-boards-33745-large.mp4"
+              src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
               type="video/mp4"
             />
-            {/* Fallback for browsers that don't support video */}
-            <div className="w-full h-full bg-gradient-to-br from-blue-100 to-purple-100"></div>
+            <source
+              src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4"
+              type="video/mp4"
+            />
           </video>
+          {/* Animated gradient fallback */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 animate-pulse opacity-50"></div>
           {/* Overlay to ensure text readability */}
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 to-purple-50/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-50/90 to-purple-50/90"></div>
         </div>
         
         {/* Content */}
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent animate-fade-in">
               Latest Electronics at Unbeatable Prices
             </h1>
-            <p className="text-xl text-gray-700 mb-8 max-w-2xl mx-auto font-medium">
+            <p className="text-xl text-gray-700 mb-8 max-w-2xl mx-auto font-medium animate-fade-in">
               Discover the newest smartphones and laptops from top brands. Free shipping on orders over $500.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in">
+              <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-300">
                 Shop Now
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button size="lg" variant="outline" className="bg-white/80 backdrop-blur-sm border-2 hover:bg-white/90">
+              <Button size="lg" variant="outline" className="bg-white/90 backdrop-blur-sm border-2 hover:bg-white/95 transition-all duration-300">
                 View Deals
               </Button>
             </div>
