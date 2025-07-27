@@ -1,9 +1,7 @@
-
 import React, { useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
@@ -65,15 +63,15 @@ const Auth = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center p-4">
-      <Card className="w-full max-w-md">
-        <CardHeader className="text-center">
+      <div className="w-full max-w-md rounded-lg border bg-background shadow-sm">
+        <div className="p-6 text-center">
           <div className="h-12 w-12 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center mx-auto mb-4">
             <span className="text-white font-bold text-lg">ET</span>
           </div>
-          <CardTitle className="text-2xl">Welcome to ElectroTech</CardTitle>
-          <CardDescription>Sign in to your account or create a new one</CardDescription>
-        </CardHeader>
-        <CardContent>
+          <h1 className="text-2xl font-semibold leading-none tracking-tight">Welcome to ElectroTech</h1>
+          <p className="text-sm text-muted-foreground mt-2">Sign in to your account or create a new one</p>
+        </div>
+        <div className="p-6 pt-0">
           <Tabs defaultValue="signin" className="w-full">
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="signin">Sign In</TabsTrigger>
@@ -176,8 +174,8 @@ const Auth = () => {
               <AlertDescription>{message}</AlertDescription>
             </Alert>
           )}
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 };

@@ -6,7 +6,7 @@ import { Product } from '@/types';
 import { useCart } from '@/contexts/CartContext';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardFooter } from '@/components/ui/card';
+
 import { useToast } from '@/hooks/use-toast';
 
 interface ProductCardProps {
@@ -28,7 +28,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   };
 
   return (
-    <Card className="group overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+    <div className="group overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 rounded-lg border bg-background shadow-sm">
       <Link to={`/product/${product.id}`}>
         <div className="relative overflow-hidden">
           <img
@@ -47,7 +47,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             </Badge>
           )}
         </div>
-        <CardContent className="p-4">
+        <div className="p-4">
           <div className="flex items-center justify-between mb-2">
             <Badge variant="outline" className="text-xs">
               {product.brand}
@@ -67,9 +67,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
               <span className="text-gray-500 line-through">${product.originalPrice}</span>
             )}
           </div>
-        </CardContent>
+        </div>
       </Link>
-      <CardFooter className="p-4 pt-0">
+      <div className="p-4 pt-0">
         <Button
           onClick={handleAddToCart}
           disabled={!product.inStock}
@@ -79,8 +79,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <ShoppingCart className="h-4 w-4 mr-2" />
           {product.inStock ? 'Add to Cart' : 'Out of Stock'}
         </Button>
-      </CardFooter>
-    </Card>
+      </div>
+    </div>
   );
 };
 
