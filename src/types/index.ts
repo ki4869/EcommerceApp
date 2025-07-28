@@ -6,7 +6,7 @@ export interface Product {
   price: number;
   originalPrice?: number;
   image: string;
-  category: 'phone' | 'laptop';
+  category: 'phone' | 'laptop' | 'tablet' | 'audio';
   brand: string;
   specifications: Record<string, string>;
   inStock: boolean;

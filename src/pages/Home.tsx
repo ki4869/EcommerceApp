@@ -53,13 +53,17 @@ const Home = () => {
               Discover the newest smartphones and laptops from top brands. Free shipping on orders over $500.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in">
-              <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-300">
-                Shop Now
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button size="lg" variant="outline" className="bg-white/90 backdrop-blur-sm border-2 hover:bg-white/95 transition-all duration-300">
-                View Deals
-              </Button>
+              <Link to="/products">
+                <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-300">
+                  Shop Now
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+              <Link to="/products">
+                <Button size="lg" variant="outline" className="bg-white/90 backdrop-blur-sm border-2 hover:bg-white/95 transition-all duration-300">
+                  View Deals
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

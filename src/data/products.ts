@@ -117,5 +117,102 @@ export const products: Product[] = [
     inStock: true,
     rating: 4.4,
     reviews: 432
+  },
+  {
+    id: '7',
+    name: 'iPad Pro 12.9"',
+    description: 'Most advanced iPad with M2 chip and stunning display',
+    price: 1099,
+    originalPrice: 1199,
+    image: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=500&h=500&fit=crop',
+    category: 'tablet',
+    brand: 'Apple',
+    specifications: {
+      'Display': '12.9-inch Liquid Retina XDR',
+      'Chip': 'Apple M2',
+      'Storage': '128GB',
+      'Camera': '12MP Wide + 10MP Ultra Wide',
+      'Battery': 'Up to 10 hours'
+    },
+    inStock: true,
+    rating: 4.8,
+    reviews: 1456
+  },
+  {
+    id: '8',
+    name: 'OnePlus 12',
+    description: 'Premium flagship with Snapdragon 8 Gen 3 and fast charging',
+    price: 799,
+    image: 'https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=500&h=500&fit=crop',
+    category: 'phone',
+    brand: 'OnePlus',
+    specifications: {
+      'Display': '6.82-inch LTPO AMOLED',
+      'Processor': 'Snapdragon 8 Gen 3',
+      'Storage': '256GB',
+      'Camera': '50MP + 64MP + 48MP',
+      'Battery': '5400mAh with 100W charging'
+    },
+    inStock: true,
+    rating: 4.6,
+    reviews: 743
+  },
+  {
+    id: '9',
+    name: 'ASUS ROG Zephyrus G14',
+    description: 'Gaming laptop with AMD Ryzen 9 and RTX 4060',
+    price: 1799,
+    image: 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=500&h=500&fit=crop',
+    category: 'laptop',
+    brand: 'ASUS',
+    specifications: {
+      'Display': '14-inch QHD+ 165Hz',
+      'Processor': 'AMD Ryzen 9 7940HS',
+      'Graphics': 'NVIDIA GeForce RTX 4060',
+      'Memory': '16GB DDR5',
+      'Storage': '1TB SSD'
+    },
+    inStock: true,
+    rating: 4.7,
+    reviews: 521
+  },
+  {
+    id: '10',
+    name: 'AirPods Pro (2nd Gen)',
+    description: 'Active Noise Cancellation with Adaptive Transparency',
+    price: 249,
+    originalPrice: 279,
+    image: 'https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=500&h=500&fit=crop',
+    category: 'audio',
+    brand: 'Apple',
+    specifications: {
+      'Noise Cancellation': 'Up to 2x more Active Noise Cancellation',
+      'Battery': 'Up to 6 hours (30 hours with case)',
+      'Connectivity': 'Bluetooth 5.3',
+      'Features': 'Spatial Audio, Adaptive Transparency',
+      'Case': 'MagSafe Charging Case'
+    },
+    inStock: true,
+    rating: 4.9,
+    reviews: 2847
+  },
+  {
+    id: '11',
+    name: 'Sony WH-1000XM5',
+    description: 'Industry-leading noise canceling headphones',
+    price: 399,
+    image: 'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=500&h=500&fit=crop',
+    category: 'audio',
+    brand: 'Sony',
+    specifications: {
+      'Noise Cancellation': 'Industry-leading noise canceling',
+      'Battery': 'Up to 30 hours',
+      'Audio': 'High-Resolution Audio support',
+      'Controls': 'Touch controls',
+      'Comfort': 'Lightweight design'
+    },
+    inStock: true,
+    rating: 4.7,
+    reviews: 1892
   }
 ];

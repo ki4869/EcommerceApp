@@ -237,13 +237,6 @@ const Profile = () => {
                 <p className="text-sm text-muted-foreground">Email Address</p>
               </div>
             </div>
-            <div className="flex items-center space-x-3">
-              <User className="h-5 w-5 text-muted-foreground" />
-              <div>
-                <p className="font-medium">{user?.id || 'N/A'}</p>
-                <p className="text-sm text-muted-foreground">User ID</p>
-              </div>
-            </div>
           </div>
         </div>
       </div>
