@@ -18,6 +18,7 @@ import OrderTracking from "./pages/OrderTracking";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import CategoryPage from "./pages/CategoryPage";
 import NotFound from "./pages/NotFound";
+import Profile from "./pages/Profile";
 
 const queryClient = new QueryClient();
 
@@ -43,6 +44,7 @@ const App = () => (
                   <Route path="/track-order/:orderId" element={<OrderTracking />} />
                   <Route path="/phones" element={<CategoryPage />} />
                   <Route path="/laptops" element={<CategoryPage />} />
+                  <Route path="/profile" element={<Profile />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </ProtectedRoute>
