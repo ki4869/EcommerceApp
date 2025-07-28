@@ -146,15 +146,15 @@ const ProductDetail = () => {
             </div>
 
             <div className="flex items-center space-x-4">
-              <span className="text-3xl font-bold text-blue-600">${product.price}</span>
+              <span className="text-3xl font-bold text-blue-600">₹{product.price}</span>
               {product.originalPrice && (
                 <span className="text-xl text-gray-500 line-through">
-                  ${product.originalPrice}
+                  ₹{product.originalPrice}
                 </span>
               )}
               {product.originalPrice && (
                 <Badge className="bg-red-500">
-                  Save ${product.originalPrice - product.price}
+                  Save ₹{product.originalPrice - product.price}
                 </Badge>
               )}
             </div>
@@ -201,7 +201,7 @@ const ProductDetail = () => {
               <div className="text-center">
                 <Truck className="h-6 w-6 mx-auto mb-2 text-blue-600" />
                 <p className="text-sm font-medium">Free Shipping</p>
-                <p className="text-xs text-gray-600">Orders over $500</p>
+                <p className="text-xs text-gray-600">Orders over ₹500</p>
               </div>
               <div className="text-center">
                 <Shield className="h-6 w-6 mx-auto mb-2 text-green-600" />

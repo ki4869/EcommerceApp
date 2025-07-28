@@ -78,7 +78,7 @@ const SearchDialog = ({ open, onOpenChange }: SearchDialogProps) => {
                         <h4 className="font-medium text-sm">{product.name}</h4>
                         <p className="text-sm text-gray-500">{product.brand}</p>
                       </div>
-                      <p className="font-semibold text-sm">${product.price}</p>
+                      <p className="font-semibold text-sm">₹{product.price}</p>
                     </div>
                   ))}
                   

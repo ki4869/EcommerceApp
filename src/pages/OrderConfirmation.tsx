@@ -62,7 +62,7 @@ const OrderConfirmation = () => {
                 </div>
                 <div>
                   <p className="text-gray-600">Total Amount:</p>
-                  <p className="font-medium">${mockOrder.total}</p>
+                  <p className="font-medium">₹{mockOrder.total}</p>
                 </div>
               </div>
 
@@ -104,7 +104,7 @@ const OrderConfirmation = () => {
                     <p className="text-gray-600">Quantity: {item.quantity}</p>
                   </div>
                   <div className="text-right">
-                    <p className="font-bold">${item.price}</p>
+                    <p className="font-bold">₹{item.price}</p>
                   </div>
                 </div>
               ))}

@@ -50,7 +50,7 @@ const Home = () => {
               Latest Electronics at Unbeatable Prices
             </h1>
             <p className="text-xl text-gray-700 mb-8 max-w-2xl mx-auto font-medium animate-fade-in">
-              Discover the newest smartphones and laptops from top brands. Free shipping on orders over $500.
+              Discover the newest smartphones and laptops from top brands. Free shipping on orders over ₹500.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in">
               <Link to="/products">
@@ -244,7 +244,7 @@ const Home = () => {
                 <Truck className="h-6 w-6 text-blue-600" />
               </div>
               <h3 className="text-xl font-semibold mb-2">Free Shipping</h3>
-              <p className="text-gray-600">Free delivery on orders over $500</p>
+              <p className="text-gray-600">Free delivery on orders over ₹500</p>
             </div>
             <div className="text-center">
               <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
